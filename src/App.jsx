@@ -12,6 +12,7 @@ import TestRunner from './pages/TestRunner'
 import Metrics from './pages/Metrics'
 import Reports from './pages/Reports'
 import Security from './pages/Security'
+import Ecosystem from './pages/Ecosystem'
 
 const NAV_ITEMS = [
   { path: '/',         label: 'Dashboard',   icon: LayoutDashboard },
@@ -20,6 +21,7 @@ const NAV_ITEMS = [
   { path: '/metrics',  label: 'Metrics',     icon: BarChart3       },
   { path: '/reports',  label: 'Reports',     icon: FileText        },
   { path: '/security', label: 'Security',    icon: ShieldAlert     },
+  { path: '/ecosystem', label: 'Ecosystem',   icon: Activity        },
 ]
 
 function Sidebar({ collapsed, onToggle }) {
@@ -140,6 +142,7 @@ function App() {
               <Route path="/metrics"  element={<Metrics />} />
               <Route path="/reports"  element={<Reports />} />
               <Route path="/security" element={<Security />} />
+              <Route path="/ecosystem" element={<Ecosystem />} />
             </Routes>
           </main>
         </div>

@@ -6,7 +6,8 @@ A high-fidelity, interactive prototype designed for the **GSoC 2026 Proposal (Id
 
 This prototype demonstrates the proposed architecture and UI/UX for the MoFA agent testing infrastructure. It allows developers to:
 - **Run Functional Tests**: Validate agent reasoning and tool usage.
-- **Security Audit (Adversarial)**: Benchmark agents against the **OWASP LLM Top 10** threat categories.
+- **Security Audit (Adversarial)**: Benchmark agents against the **OWASP LLM Top 10** threat categories (32+ prompt corpus).
+- **MoFA Ecosystem Integration**: Automated validation for the **Memory System** and **Orchestrator** (Multi-agent collaboration).
 - **Performance Telemetry**: Monitor latency, token usage, and resource consumption.
 - **Visual Reporting**: Interactively explore test results and security postures.
 
