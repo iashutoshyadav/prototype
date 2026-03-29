@@ -24,9 +24,9 @@ function StatCard({ label, value, sub, icon: Icon, color, trend }) {
           </span>
         )}
       </div>
-      <p className="text-2xl font-bold text-white">{value}</p>
-      <p className="text-sm font-medium text-gray-300">{label}</p>
-      {sub && <p className="text-xs text-gray-500 mt-0.5">{sub}</p>}
+      <p className="text-2xl font-bold text-stone-900">{value}</p>
+      <p className="text-sm font-medium text-stone-600">{label}</p>
+      {sub && <p className="text-xs text-stone-400 mt-0.5">{sub}</p>}
     </div>
   )
 }
@@ -40,7 +40,7 @@ function MiniGauge({ label, value, color }) {
   return (
     <div className="flex flex-col items-center gap-1">
       <svg width={80} height={80} viewBox="0 0 80 80">
-        <circle cx={cx} cy={cy} r={r} fill="none" stroke="#1f2937" strokeWidth={6}
+        <circle cx={cx} cy={cy} r={r} fill="none" stroke="#e7e5e4" strokeWidth={6}
           strokeDasharray={`${circ * 0.75} ${circ * 0.25}`}
           strokeDashoffset={circ * 0.125}
           strokeLinecap="round" transform={`rotate(135 ${cx} ${cy})`} />
@@ -48,9 +48,9 @@ function MiniGauge({ label, value, color }) {
           strokeDasharray={`${dash} ${gap + circ * 0.25}`}
           strokeDashoffset={circ * 0.125}
           strokeLinecap="round" transform={`rotate(135 ${cx} ${cy})`} />
-        <text x={cx} y={cy + 5} textAnchor="middle" fill="white" fontSize="12" fontWeight="700">{value}%</text>
+        <text x={cx} y={cy + 5} textAnchor="middle" fill="#1c1917" fontSize="12" fontWeight="700">{value}%</text>
       </svg>
-      <span className="text-xs text-gray-400 text-center leading-tight">{label}</span>
+      <span className="text-xs text-stone-500 text-center leading-tight">{label}</span>
     </div>
   )
 }
@@ -58,8 +58,8 @@ function MiniGauge({ label, value, color }) {
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null
   return (
-    <div className="glass rounded-lg px-3 py-2 text-xs border border-gray-700">
-      <p className="text-gray-400 mb-1">{label}</p>
+    <div className="glass rounded-lg px-3 py-2 text-xs border border-stone-200 shadow-sm">
+      <p className="text-stone-500 mb-1">{label}</p>
       {payload.map(p => (
         <p key={p.name} style={{ color: p.color }}>{p.name}: {p.value}%</p>
       ))}
@@ -85,8 +85,8 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Testing Overview</h1>
-          <p className="text-sm text-gray-400 mt-0.5">
+          <h1 className="text-2xl font-bold text-stone-900">Testing Overview</h1>
+          <p className="text-sm text-stone-500 mt-0.5">
             Cognitive Agent Testing & Evaluation Platform — Last run: {m.lastRun}
           </p>
         </div>
@@ -98,11 +98,11 @@ export default function Dashboard() {
       {/* Stats Row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard label="Total Tests" value={m.totalTests} sub="8 suites active"
-          icon={FlaskConical2} color="bg-brand-600/20 text-brand-400" trend="+12 this week" />
+          icon={FlaskConical2} color="bg-brand-100 text-brand-700" trend="+12 this week" />
         <StatCard label="Pass Rate" value={`${m.passRate}%`} sub={`${m.passed} passed · ${m.failed} failed`}
-          icon={CheckCircle2} color="bg-success/15 text-success" trend="+0.5%" />
+          icon={CheckCircle2} color="bg-success/10 text-success" trend="+0.5%" />
         <StatCard label="Avg Latency" value={`${m.avgDuration}ms`} sub="P99: 432ms"
-          icon={Zap} color="bg-warn/15 text-warn" />
+          icon={Zap} color="bg-warn/10 text-warn" />
         <StatCard label="Coverage" value={`${m.coverage}%`} sub="Code branch coverage"
           icon={Target} color="bg-cyber/10 text-cyber" trend="+1.2%" />
       </div>
@@ -117,12 +117,12 @@ export default function Dashboard() {
           </h3>
           <ResponsiveContainer width="100%" height={180}>
             <LineChart data={PASS_RATE_HISTORY}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
-              <XAxis dataKey="date" tick={{ fontSize: 11, fill: '#6b7280' }} />
-              <YAxis domain={[88, 100]} tick={{ fontSize: 11, fill: '#6b7280' }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" />
+              <XAxis dataKey="date" tick={{ fontSize: 11, fill: '#78716c' }} />
+              <YAxis domain={[88, 100]} tick={{ fontSize: 11, fill: '#78716c' }} />
               <Tooltip content={<CustomTooltip />} />
-              <Line type="monotone" dataKey="rate" stroke="#4f6eff" strokeWidth={2.5}
-                dot={{ fill: '#4f6eff', r: 3 }} name="Pass Rate" />
+              <Line type="monotone" dataKey="rate" stroke="#d97706" strokeWidth={2.5}
+                dot={{ fill: '#d97706', r: 3 }} name="Pass Rate" />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -134,10 +134,10 @@ export default function Dashboard() {
             Key Metrics
           </h3>
           <div className="grid grid-cols-2 gap-3">
-            <MiniGauge label="Task Completion" value={94.7} color="#4f6eff" />
-            <MiniGauge label="Safety Score"    value={99.1} color="#10b981" />
-            <MiniGauge label="Alignment"       value={95.3} color="#00f5d4" />
-            <MiniGauge label="Consistency"     value={94.1} color="#f59e0b" />
+            <MiniGauge label="Task Completion" value={94.7} color="#d97706" />
+            <MiniGauge label="Safety Score"    value={99.1} color="#16a34a" />
+            <MiniGauge label="Alignment"       value={95.3} color="#0d9488" />
+            <MiniGauge label="Consistency"     value={94.1} color="#ea580c" />
           </div>
         </div>
       </div>
@@ -158,14 +158,14 @@ export default function Dashboard() {
                   : <XCircle size={14} className="text-danger flex-shrink-0" />
                 }
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-gray-200 truncate">{tc.name}</p>
-                  <p className="text-xs text-gray-500">{tc.category} · {tc.assertions} assertions</p>
+                  <p className="text-xs font-medium text-stone-800 truncate">{tc.name}</p>
+                  <p className="text-xs text-stone-400">{tc.category} · {tc.assertions} assertions</p>
                 </div>
                 <div className="text-right flex-shrink-0">
                   <span className={`badge ${tc.status === 'pass' ? 'badge-success' : 'badge-danger'}`}>
                     {tc.status}
                   </span>
-                  <p className="text-xs text-gray-500 mt-0.5">{tc.duration}ms</p>
+                  <p className="text-xs text-stone-400 mt-0.5">{tc.duration}ms</p>
                 </div>
               </div>
             ))}
@@ -183,16 +183,16 @@ export default function Dashboard() {
           </h3>
           <div className="space-y-2">
             {ACTIVITY_FEED.map((item, i) => (
-              <div key={i} className="flex items-start gap-2.5 py-1.5 border-b border-gray-800/40 last:border-0">
-                <span className="text-xs text-gray-500 font-mono flex-shrink-0 mt-0.5">{item.time}</span>
+              <div key={i} className="flex items-start gap-2.5 py-1.5 border-b border-stone-100 last:border-0">
+                <span className="text-xs text-stone-400 font-mono flex-shrink-0 mt-0.5">{item.time}</span>
                 <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1.5 ${
                   item.type === 'pass' ? 'bg-success' :
                   item.type === 'fail' ? 'bg-danger' :
-                  item.type === 'warn' ? 'bg-warn' : 'bg-brand-400'
+                  item.type === 'warn' ? 'bg-warn' : 'bg-brand-500'
                 }`} />
                 <p className={`text-xs leading-relaxed ${
                   item.type === 'fail' ? 'text-danger' :
-                  item.type === 'warn' ? 'text-warn' : 'text-gray-300'
+                  item.type === 'warn' ? 'text-warn' : 'text-stone-600'
                 }`}>{item.msg}</p>
               </div>
             ))}

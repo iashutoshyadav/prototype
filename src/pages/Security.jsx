@@ -66,8 +66,8 @@ export default function Security() {
     <div className="space-y-5 animate-fade-in">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-white">Security & Adversarial Testing</h1>
-        <p className="text-sm text-gray-400 mt-0.5">
+        <h1 className="text-2xl font-bold text-stone-900">Security & Adversarial Testing</h1>
+        <p className="text-sm text-stone-500 mt-0.5">
           OWASP LLM Top 10 · Jailbreak Detection · Prompt Injection · Fault Injection
         </p>
       </div>
@@ -77,22 +77,22 @@ export default function Security() {
         <div className="card flex-shrink-0 flex items-center gap-3 px-5 py-3">
           <div className="text-3xl font-bold text-gradient">{covered}/{total}</div>
           <div>
-            <p className="text-sm font-semibold text-gray-200">OWASP LLM Categories</p>
-            <p className="text-xs text-gray-500">Covered by test suite</p>
+            <p className="text-sm font-semibold text-stone-800">OWASP LLM Categories</p>
+            <p className="text-xs text-stone-500">Covered by test suite</p>
           </div>
         </div>
         <div className="card flex-shrink-0 flex items-center gap-3 px-5 py-3">
           <div className="text-3xl font-bold text-success">100%</div>
           <div>
-            <p className="text-sm font-semibold text-gray-200">Injection Blocked</p>
-            <p className="text-xs text-gray-500">6/6 samples detected</p>
+            <p className="text-sm font-semibold text-stone-800">Injection Blocked</p>
+            <p className="text-xs text-stone-500">6/6 samples detected</p>
           </div>
         </div>
         <div className="card flex-shrink-0 flex items-center gap-3 px-5 py-3">
           <div className="text-3xl font-bold text-warn">0</div>
           <div>
-            <p className="text-sm font-semibold text-gray-200">Policy Violations</p>
-            <p className="text-xs text-gray-500">Last 247 tests</p>
+            <p className="text-sm font-semibold text-stone-800">Policy Violations</p>
+            <p className="text-xs text-stone-500">Last 247 tests</p>
           </div>
         </div>
       </div>
@@ -115,10 +115,10 @@ export default function Security() {
                     <span className="text-xs font-semibold text-success">{s.result}</span>
                   </div>
                 </div>
-                <p className="text-xs text-gray-400 font-mono truncate mb-1">
+                <p className="text-xs text-stone-400 font-mono truncate mb-1">
                   Input: "{s.input}"
                 </p>
-                <p className="text-xs text-gray-500">{s.detail}</p>
+                <p className="text-xs text-stone-500">{s.detail}</p>
               </div>
             ))}
           </div>
@@ -137,8 +137,8 @@ export default function Security() {
                   !item.covered ? 'opacity-50' : ''
                 }`}
               >
-                <span className="text-xs font-mono text-gray-500 w-12 flex-shrink-0">{item.id}</span>
-                <span className="flex-1 text-xs text-gray-300">{item.name}</span>
+                <span className="text-xs font-mono text-stone-400 w-12 flex-shrink-0">{item.id}</span>
+                <span className="flex-1 text-xs text-stone-600">{item.name}</span>
                 <div className="flex items-center gap-2 flex-shrink-0">
                   {item.covered ? (
                     <>
@@ -165,7 +165,7 @@ export default function Security() {
           <Zap size={16} className="text-warn" />
           Fault Injection Controls
         </h3>
-        <p className="text-xs text-gray-400 mb-4">
+        <p className="text-xs text-stone-500 mb-4">
           Enable fault modes to test Agent resilience. Tests will execute with the selected failure conditions.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -175,17 +175,17 @@ export default function Security() {
               onClick={() => toggleFault(mode.id)}
               className={`text-left p-4 rounded-xl border transition-all ${
                 faults[mode.id]
-                  ? 'bg-danger/10 border-danger/40 text-danger'
-                  : 'glass-light border-gray-700/40 text-gray-400 hover:border-gray-600'
+                  ? 'bg-danger/5 border-danger/30 text-danger shadow-sm'
+                  : 'bg-stone-50 border-stone-100 text-stone-500 hover:border-stone-200 hover:bg-stone-100'
               }`}
             >
               <div className="flex items-center justify-between mb-2">
-                <span className={`text-sm font-semibold ${faults[mode.id] ? 'text-danger' : 'text-gray-200'}`}>
+                <span className={`text-sm font-semibold ${faults[mode.id] ? 'text-danger' : 'text-stone-800'}`}>
                   {mode.label}
                 </span>
                 {faults[mode.id]
                   ? <AlertTriangle size={14} className="text-danger" />
-                  : <div className="w-3.5 h-3.5 rounded-full border border-gray-600" />
+                  : <div className="w-3.5 h-3.5 rounded-full border border-stone-300" />
                 }
               </div>
               <p className="text-xs">{mode.desc}</p>
@@ -223,7 +223,7 @@ export default function Security() {
             { label: 'Nested Tool Calls',  result: 'HANDLED', score: '91%'  },
           ].map(({ label, result, score }) => (
             <div key={label} className="glass-light rounded-xl p-3 text-center">
-              <p className="text-xs text-gray-400 mb-1">{label}</p>
+              <p className="text-xs text-stone-500 mb-1">{label}</p>
               <p className="text-sm font-bold text-success">{score}</p>
               <span className="badge badge-success text-xs mt-1">{result}</span>
             </div>

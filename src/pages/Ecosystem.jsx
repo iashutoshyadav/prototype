@@ -27,8 +27,8 @@ export default function Ecosystem() {
     <div className="space-y-5 animate-fade-in">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-white">MoFA Ecosystem Integration</h1>
-        <p className="text-sm text-gray-400 mt-0.5">
+        <h1 className="text-2xl font-bold text-stone-900">MoFA Ecosystem Integration</h1>
+        <p className="text-sm text-stone-500 mt-0.5">
           Memory System Validation · Orchestrator Auditing · Multi-Agent Collaboration
         </p>
       </div>
@@ -42,12 +42,12 @@ export default function Ecosystem() {
           { label: 'Consistency Score', value: '0.98', icon: Layers, color: 'text-warn' },
         ].map(({ label, value, icon: Icon, color }) => (
           <div key={label} className="card flex items-center gap-4 px-5 py-4">
-            <div className={`p-2.5 rounded-xl bg-gray-800 border border-gray-700 ${color} glow-sm`}>
+            <div className={`p-2.5 rounded-xl bg-stone-100 border border-stone-200 ${color} glow-sm`}>
               <Icon size={20} />
             </div>
             <div>
-              <p className="text-xs text-gray-400">{label}</p>
-              <p className="text-xl font-bold text-white">{value}</p>
+              <p className="text-xs text-stone-500">{label}</p>
+              <p className="text-xl font-bold text-stone-900">{value}</p>
             </div>
           </div>
         ))}
@@ -66,15 +66,15 @@ export default function Ecosystem() {
                 <div className="flex items-center gap-3">
                   <div className={`w-2 h-2 rounded-full ${s.status === 'Synced' ? 'bg-success' : 'bg-warn'} animate-pulse`} />
                   <div>
-                    <p className="text-sm font-semibold text-gray-200 font-mono italic">{s.key}</p>
-                    <p className="text-xs text-gray-500">Status: {s.status}</p>
+                    <p className="text-sm font-semibold text-stone-800 font-mono italic">{s.key}</p>
+                    <p className="text-xs text-stone-500">Status: {s.status}</p>
                   </div>
                 </div>
                 <div className="text-right">
                   <p className={`text-sm font-bold ${s.accuracy > 0.95 ? 'text-success' : 'text-warn'}`}>
                     {(s.accuracy * 100).toFixed(1)}%
                   </p>
-                  <p className="text-[10px] text-gray-500 uppercase tracking-wider">Accuracy</p>
+                  <p className="text-[10px] text-stone-400 uppercase tracking-wider">Accuracy</p>
                 </div>
               </div>
             ))}
@@ -91,21 +91,21 @@ export default function Ecosystem() {
             <Workflow size={16} className="text-brand-400" />
             Multi-Agent Collaboration Trace
           </h3>
-          <div className="relative pl-6 border-l border-gray-800 space-y-6">
+          <div className="relative pl-6 border-l border-stone-200 space-y-6">
             {COLLABORATION_TRACE.map((step, i) => (
               <div key={i} className="relative">
-                <div className={`absolute -left-8 top-1 w-4 h-4 rounded-full border-2 border-gray-900 ${
-                  step.status === 'success' ? 'bg-success' : step.status === 'pending' ? 'bg-cyber' : 'bg-gray-700'
+                <div className={`absolute -left-8 top-1 w-4 h-4 rounded-full border-2 border-white ${
+                  step.status === 'success' ? 'bg-success' : step.status === 'pending' ? 'bg-cyber' : 'bg-stone-300'
                 }`} />
                 <div className="flex flex-col">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-brand-300 uppercase tracking-tighter">{step.agent}</span>
-                    <span className="text-[10px] font-mono text-gray-500">{step.time}</span>
+                    <span className="text-xs font-bold text-brand-600 uppercase tracking-tighter">{step.agent}</span>
+                    <span className="text-[10px] font-mono text-stone-400">{step.time}</span>
                   </div>
-                  <p className="text-sm text-gray-200 mt-1">{step.action}</p>
+                  <p className="text-sm text-stone-800 mt-1">{step.action}</p>
                   <div className="flex items-center gap-2 mt-2">
                     <span className={`text-[10px] px-1.5 py-0.5 rounded border ${
-                      step.status === 'success' ? 'bg-success/10 border-success/20 text-success' : 'bg-gray-800 border-gray-700 text-gray-500'
+                      step.status === 'success' ? 'bg-success/10 border-success/20 text-success' : 'bg-stone-100 border-stone-200 text-stone-500'
                     }`}>
                       {step.status.toUpperCase()}
                     </span>
@@ -131,10 +131,10 @@ export default function Ecosystem() {
           {[65, 82, 45, 90, 75, 88, 92, 70, 85, 95].map((h, i) => (
             <div key={i} className="flex-1 flex flex-col items-center gap-2">
               <div 
-                className="w-full bg-gradient-to-t from-brand-500/20 to-cyber/40 rounded-t-lg border-x border-t border-brand-500/30 transition-all hover:to-brand-400"
+                className="w-full bg-gradient-to-t from-brand-500/10 to-brand-500/30 rounded-t-lg border-x border-t border-brand-500/20 transition-all hover:to-brand-500/40"
                 style={{ height: `${h}%` }}
               />
-              <span className="text-[10px] text-gray-500 font-mono">T-{10-i}</span>
+              <span className="text-[10px] text-stone-400 font-mono">T-{10-i}</span>
             </div>
           ))}
         </div>

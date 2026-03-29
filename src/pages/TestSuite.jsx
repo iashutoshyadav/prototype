@@ -12,7 +12,7 @@ function TestCard({ tc, onSelect, selected }) {
     <div
       onClick={() => onSelect(tc)}
       className={`card cursor-pointer transition-all duration-200 ${
-        selected ? 'border-brand-500/60 bg-brand-600/5 glow-brand' : 'hover:border-gray-700'
+        selected ? 'border-brand-500 bg-brand-50 shadow-sm' : 'hover:border-stone-300'
       }`}
     >
       <div className="flex items-start justify-between gap-2 mb-2">
@@ -21,7 +21,7 @@ function TestCard({ tc, onSelect, selected }) {
             ? <CheckCircle2 size={14} className="text-success flex-shrink-0" />
             : <XCircle size={14} className="text-danger flex-shrink-0" />
           }
-          <span className="text-sm font-semibold text-gray-200 truncate">{tc.name}</span>
+          <span className="text-sm font-semibold text-stone-800 truncate">{tc.name}</span>
         </div>
         <span className={`badge flex-shrink-0 ${tc.status === 'pass' ? 'badge-success' : 'badge-danger'}`}>
           {tc.status}
@@ -29,10 +29,10 @@ function TestCard({ tc, onSelect, selected }) {
       </div>
       <div className="flex items-center gap-3 mb-3">
         <span className="badge badge-brand">{tc.category}</span>
-        <span className="text-xs text-gray-500 flex items-center gap-1">
+        <span className="text-xs text-stone-500 flex items-center gap-1">
           <Clock size={11} /> {tc.duration}ms
         </span>
-        <span className="text-xs text-gray-500">
+        <span className="text-xs text-stone-500">
           {tc.passed}/{tc.assertions} assertions
         </span>
       </div>
@@ -61,10 +61,10 @@ function DSLViewer({ tc }) {
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="section-title">
-            <Code2 size={16} className="text-brand-400" />
+            <Code2 size={16} className="text-brand-600" />
             DSL Source
           </h3>
-          <p className="text-xs text-gray-500 mt-0.5">{tc.name}</p>
+          <p className="text-xs text-stone-500 mt-0.5">{tc.name}</p>
         </div>
         <button onClick={handleCopy} className="btn-secondary text-xs gap-1.5">
           {copied ? <Check size={12} className="text-success" /> : <Copy size={12} />}
@@ -74,29 +74,29 @@ function DSLViewer({ tc }) {
 
       <div className="code-block overflow-auto max-h-80">
         {lines.map((line, i) => (
-          <div key={i} className="flex gap-3 hover:bg-gray-800/30">
-            <span className="text-gray-600 select-none w-6 text-right flex-shrink-0">{i + 1}</span>
+          <div key={i} className="flex gap-3 hover:bg-stone-800">
+            <span className="text-stone-500 select-none w-6 text-right flex-shrink-0">{i + 1}</span>
             <span className={`${
               line.trim().startsWith('#[') ? 'text-cyber' :
               line.includes('async fn') ? 'text-brand-400' :
               line.includes('assert_') ? 'text-warn' :
               line.includes('let ') ? 'text-purple-400' :
-              line.includes('//') ? 'text-gray-600' :
-              'text-gray-300'
+              line.includes('//') ? 'text-stone-500' :
+              'text-stone-300'
             }`}>{line || '\u00a0'}</span>
           </div>
         ))}
       </div>
 
       {/* Assertions breakdown */}
-      <div className="mt-4 pt-4 border-t border-gray-800">
-        <p className="text-xs text-gray-400 mb-2 font-medium">Assertions ({tc.assertions})</p>
+      <div className="mt-4 pt-4 border-t border-stone-100">
+        <p className="text-xs text-stone-500 mb-2 font-medium">Assertions ({tc.assertions})</p>
         <div className="flex items-center gap-2">
           <div className="progress-bar flex-1">
             <div className="h-full rounded-full bg-gradient-to-r from-brand-500 to-success transition-all"
               style={{ width: `${(tc.passed / tc.assertions) * 100}%` }} />
           </div>
-          <span className="text-xs text-gray-400">{tc.passed}/{tc.assertions}</span>
+          <span className="text-xs text-stone-500">{tc.passed}/{tc.assertions}</span>
         </div>
         {tc.failed > 0 && (
           <p className="text-xs text-danger mt-1">⚠ {tc.failed} assertion(s) failed</p>
@@ -112,8 +112,8 @@ function DSLViewer({ tc }) {
           ['Tags', tc.tags.join(', ')],
         ].map(([k, v]) => (
           <div key={k} className="glass-light rounded-lg px-3 py-2">
-            <p className="text-xs text-gray-500">{k}</p>
-            <p className="text-xs text-gray-200 font-medium mt-0.5 truncate">{v}</p>
+            <p className="text-xs text-stone-500">{k}</p>
+            <p className="text-xs text-stone-800 font-medium mt-0.5 truncate">{v}</p>
           </div>
         ))}
       </div>
@@ -136,8 +136,8 @@ export default function TestSuite() {
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-white">Test Suite</h1>
-          <p className="text-sm text-gray-400 mt-0.5">Agent Test DSL · Scenario Builder · Assertion Library</p>
+          <h1 className="text-2xl font-bold text-stone-900">Test Suite</h1>
+          <p className="text-sm text-stone-500 mt-0.5">Agent Test DSL · Scenario Builder · Assertion Library</p>
         </div>
         <button className="btn-primary">
           <Plus size={14} /> New Test Case
@@ -147,7 +147,7 @@ export default function TestSuite() {
       {/* Filters */}
       <div className="flex items-center gap-3 flex-wrap">
         <div className="relative flex-1 min-w-48 max-w-xs">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400" />
           <input
             className="input-field pl-9"
             placeholder="Search tests..."
@@ -162,8 +162,8 @@ export default function TestSuite() {
               onClick={() => setCategory(cat)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                 category === cat
-                  ? 'bg-brand-600 text-white'
-                  : 'bg-gray-800 text-gray-400 hover:text-gray-200 hover:bg-gray-700'
+                  ? 'bg-brand-600 text-white shadow-sm'
+                  : 'bg-stone-100 text-stone-500 hover:text-stone-800 hover:bg-stone-200'
               }`}
             >
               {cat}
@@ -205,7 +205,7 @@ export default function TestSuite() {
             />
           ))}
           {filtered.length === 0 && (
-            <div className="card text-center py-10 text-gray-500">
+            <div className="card text-center py-10 text-stone-400">
               <FlaskConical size={32} className="mx-auto mb-2 opacity-30" />
               <p>No tests match the current filter.</p>
             </div>
@@ -217,7 +217,7 @@ export default function TestSuite() {
           {selected
             ? <DSLViewer tc={selected} />
             : (
-              <div className="card h-full flex items-center justify-center text-gray-500">
+              <div className="card h-full flex items-center justify-center text-stone-400">
                 Select a test case to view its DSL source
               </div>
             )
@@ -246,7 +246,7 @@ export default function TestSuite() {
             </div>
           ))}
           <div className="glass-light rounded-lg px-3 py-2 flex items-center justify-center">
-            <span className="text-xs text-gray-500">+30 more...</span>
+            <span className="text-xs text-stone-500">+30 more...</span>
           </div>
         </div>
       </div>

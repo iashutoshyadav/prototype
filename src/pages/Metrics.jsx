@@ -19,25 +19,24 @@ function MetricGaugeCard({ label, value, max = 100, color, icon: Icon, sublabel 
   return (
     <div className="card flex flex-col items-center text-center gap-1">
       <svg width={100} height={100} viewBox="0 0 100 100">
-        <circle cx={cx} cy={cy} r={r} fill="none" stroke="#1f2937" strokeWidth={7}
+        <circle cx={cx} cy={cy} r={r} fill="none" stroke="#e7e5e4" strokeWidth={7}
           strokeDasharray={`${circ * 0.75} ${circ * 0.25}`}
           strokeDashoffset={circ * 0.125}
           strokeLinecap="round" transform={`rotate(135 ${cx} ${cy})`} />
         <circle cx={cx} cy={cy} r={r} fill="none" stroke={color} strokeWidth={7}
           strokeDasharray={`${dash} ${circ - dash + circ * 0.25}`}
           strokeDashoffset={circ * 0.125}
-          strokeLinecap="round" transform={`rotate(135 ${cx} ${cy})`}
-          style={{ filter: `drop-shadow(0 0 6px ${color}88)` }} />
-        <text x={cx} y={cy - 4} textAnchor="middle" fill="white" fontSize="14" fontWeight="700">{value}</text>
-        <text x={cx} y={cy + 10} textAnchor="middle" fill="#6b7280" fontSize="9">
+          strokeLinecap="round" transform={`rotate(135 ${cx} ${cy})`} />
+        <text x={cx} y={cy - 4} textAnchor="middle" fill="#1c1917" fontSize="14" fontWeight="700">{value}</text>
+        <text x={cx} y={cy + 10} textAnchor="middle" fill="#78716c" fontSize="9">
           {max === 100 ? '%' : max}
         </text>
       </svg>
       <div className="flex items-center gap-1.5">
         <Icon size={12} style={{ color }} />
-        <span className="text-xs font-semibold text-gray-200">{label}</span>
+        <span className="text-xs font-semibold text-stone-800">{label}</span>
       </div>
-      {sublabel && <p className="text-xs text-gray-500">{sublabel}</p>}
+      {sublabel && <p className="text-xs text-stone-500">{sublabel}</p>}
     </div>
   )
 }
@@ -54,8 +53,8 @@ const RADAR_DATA = [
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null
   return (
-    <div className="glass rounded-lg px-3 py-2 text-xs border border-gray-700">
-      <p className="text-gray-400 mb-1">{label}</p>
+    <div className="glass rounded-lg px-3 py-2 text-xs border border-stone-200 shadow-sm">
+      <p className="text-stone-500 mb-1">{label}</p>
       {payload.map(p => (
         <p key={p.name} style={{ color: p.color }} className="font-mono">
           {p.name}: {p.value}ms
@@ -72,8 +71,8 @@ export default function Metrics() {
     <div className="space-y-5 animate-fade-in">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-white">Evaluation & Metrics</h1>
-        <p className="text-sm text-gray-400 mt-0.5">
+        <h1 className="text-2xl font-bold text-stone-900">Evaluation & Metrics</h1>
+        <p className="text-sm text-stone-500 mt-0.5">
           30+ metrics · LLM-as-Judge · Performance Benchmarks · Cost Analysis
         </p>
       </div>
@@ -81,15 +80,15 @@ export default function Metrics() {
       {/* Score Overview */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         <MetricGaugeCard label="Task Completion" value={m.accuracy.taskCompletion}
-          color="#4f6eff" icon={Target} sublabel="Accuracy" />
+          color="#d97706" icon={Target} sublabel="Accuracy" />
         <MetricGaugeCard label="Tool Call Acc." value={m.accuracy.toolCallAccuracy}
-          color="#00f5d4" icon={Zap} sublabel="Integration" />
+          color="#0d9488" icon={Zap} sublabel="Integration" />
         <MetricGaugeCard label="Safety Score" value={m.safety.harmfulRefusal}
-          color="#10b981" icon={Shield} sublabel="Refusal Rate" />
+          color="#16a34a" icon={Shield} sublabel="Refusal Rate" />
         <MetricGaugeCard label="Alignment" value={m.alignment.instructionFollowing}
           color="#8b5cf6" icon={Award} sublabel="Instruction" />
         <MetricGaugeCard label="Consistency" value={m.alignment.consistencyScore}
-          color="#f59e0b" icon={Users} sublabel="Stability" />
+          color="#ea580c" icon={Users} sublabel="Stability" />
         <MetricGaugeCard label="Info Extract." value={m.accuracy.infoExtraction}
           color="#f43f5e" icon={BarChart3} sublabel="Precision" />
       </div>
@@ -104,11 +103,11 @@ export default function Metrics() {
           </h3>
           <ResponsiveContainer width="100%" height={220}>
             <LineChart data={LATENCY_HISTORY}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
-              <XAxis dataKey="time" tick={{ fontSize: 11, fill: '#6b7280' }} />
-              <YAxis tick={{ fontSize: 11, fill: '#6b7280' }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e7e5e4" />
+              <XAxis dataKey="time" tick={{ fontSize: 11, fill: '#78716c' }} />
+              <YAxis tick={{ fontSize: 11, fill: '#78716c' }} />
               <Tooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{ fontSize: 11, color: '#9ca3af' }} />
+              <Legend wrapperStyle={{ fontSize: 11, color: '#57534e' }} />
               <Line type="monotone" dataKey="p50" stroke="#10b981" strokeWidth={2}
                 dot={false} name="P50" />
               <Line type="monotone" dataKey="p90" stroke="#f59e0b" strokeWidth={2}
@@ -127,9 +126,9 @@ export default function Metrics() {
           </h3>
           <ResponsiveContainer width="100%" height={220}>
             <RadarChart data={RADAR_DATA}>
-              <PolarGrid stroke="#1f2937" />
-              <PolarAngleAxis dataKey="metric" tick={{ fontSize: 10, fill: '#6b7280' }} />
-              <Radar name="Score" dataKey="score" stroke="#4f6eff" fill="#4f6eff" fillOpacity={0.25} />
+              <PolarGrid stroke="#e7e5e4" />
+              <PolarAngleAxis dataKey="metric" tick={{ fontSize: 10, fill: '#78716c' }} />
+              <Radar name="Score" dataKey="score" stroke="#d97706" fill="#d97706" fillOpacity={0.25} />
             </RadarChart>
           </ResponsiveContainer>
         </div>
@@ -151,9 +150,9 @@ export default function Metrics() {
               { k: 'P99 Latency', v: `${m.performance.p99}ms`, color: 'text-danger' },
               { k: 'Avg Tokens',  v: m.performance.avgTokens },
             ].map(({ k, v, color }) => (
-              <div key={k} className="flex justify-between items-center border-b border-gray-800/40 pb-2 last:border-0">
-                <span className="text-xs text-gray-400">{k}</span>
-                <span className={`text-xs font-semibold font-mono ${color || 'text-gray-200'}`}>{v}</span>
+              <div key={k} className="flex justify-between items-center border-b border-stone-100 pb-2 last:border-0">
+                <span className="text-xs text-stone-500">{k}</span>
+                <span className={`text-xs font-semibold font-mono ${color || 'text-stone-800'}`}>{v}</span>
               </div>
             ))}
           </div>
@@ -173,8 +172,8 @@ export default function Metrics() {
               { k: 'Avg tokens/test',  v: '847' },
               { k: 'Budget used',      v: '6.6%' },
             ].map(({ k, v }) => (
-              <div key={k} className="flex justify-between items-center border-b border-gray-800/40 pb-2 last:border-0">
-                <span className="text-xs text-gray-400">{k}</span>
+              <div key={k} className="flex justify-between items-center border-b border-stone-100 pb-2 last:border-0">
+                <span className="text-xs text-stone-500">{k}</span>
                 <span className="text-xs font-semibold font-mono text-success">{v}</span>
               </div>
             ))}
@@ -197,7 +196,7 @@ export default function Metrics() {
             ].map(({ k, v }) => (
               <div key={k}>
                 <div className="flex justify-between mb-0.5">
-                  <span className="text-xs text-gray-400">{k}</span>
+                  <span className="text-xs text-stone-500">{k}</span>
                   <span className="text-xs font-mono text-success">{v}%</span>
                 </div>
                 <div className="progress-bar">
@@ -238,25 +237,25 @@ export default function Metrics() {
             },
           ].map((item, i) => (
             <div key={i} className="glass-light rounded-xl p-4">
-              <p className="text-xs text-gray-500 mb-1">Input</p>
-              <p className="text-xs text-gray-300 font-mono mb-2 truncate">{item.input}</p>
-              <p className="text-xs text-gray-500 mb-1">Response</p>
-              <p className="text-xs text-gray-400 mb-3 truncate">{item.response}</p>
+              <p className="text-xs text-stone-500 mb-1">Input</p>
+              <p className="text-xs text-stone-800 font-mono mb-2 truncate bg-stone-100/50 p-1 rounded">{item.input}</p>
+              <p className="text-xs text-stone-500 mb-1">Response</p>
+              <p className="text-xs text-stone-600 mb-3 truncate">{item.response}</p>
               <div className="space-y-1">
                 {Object.entries(item.scores).map(([k, v]) => (
                   <div key={k} className="flex justify-between">
-                    <span className="text-xs text-gray-500 capitalize">{k}</span>
+                    <span className="text-xs text-stone-500 capitalize">{k}</span>
                     <div className="flex items-center gap-2">
                       <div className="progress-bar w-16">
-                        <div className="h-full rounded-full bg-brand-500"
+                        <div className="h-full rounded-full bg-brand-600"
                           style={{ width: `${v * 10}%` }} />
                       </div>
-                      <span className="text-xs text-brand-400 w-6 text-right">{v}</span>
+                      <span className="text-xs text-brand-600 w-6 text-right font-bold">{v}</span>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="mt-2 pt-2 border-t border-gray-800">
+              <div className="mt-2 pt-2 border-t border-stone-200">
                 <span className="badge badge-success">✓ {item.verdict}</span>
               </div>
             </div>
